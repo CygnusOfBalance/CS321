@@ -16,7 +16,7 @@ npm install @vue/cli -g
 ```
 vue ui
 ```
-### If you get an error like: Local package.json exists, but node_modules missing, did you mean to install?  Do:
+### If you get an error like: Local package.json exists, but node_modules missing, did you mean to install?  or something about node_modules being gone, Do:
 ```
 npm install
 ```
