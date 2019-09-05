@@ -1,19 +1,31 @@
 # web-app
 
-## Project setup
-```
-npm install
-```
+#### Dont remove things from .gitignore without consuilting someone, things in there are different depending on IDE's
 
-### Compiles and hot-reloads for development
+## Project setup 
+### You need npm, yarn also works but commands are different for yarn
 ```
-npm run serve
+npm install @vue/cli -g
 ```
-
-### Compiles and minifies for production
+### Once you have installed the the cli you can use the command line or you can do this: (Which I highly reccomend)
+### In terminal navigate to the project folder:
 ```
-npm run build
+*/CS321/web-app
 ```
+### This is how you can make changes and see the result live locally without messing with anything else
+```
+vue ui
+```
+## WARNING 
+```
+vue ui
+```
+## will defualt to the most recent git branch you are on so make sure you are on your correct branch before doing this
+### This will open a webpage, Click on import, web-app
+### This gives you a gui for adding dependencies and lots of other things, but most importantly navigate to tasks on the left
+### Go to the build task. Click Run Task if any new dependencies are added.  Otherwise you go right to serve tab
+### Here you click Run Task and then when its done with the loading circle on the right, above the loading circle is a button titled Open App click that
+### Now you have a local version of the web-app running and you can make changes to the code and watch it change live on that webpage
 
 ### Run your tests
 ```
