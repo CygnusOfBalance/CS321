@@ -3,8 +3,9 @@
     ref="form"
     v-model="valid"
     lazy-validation
-  >
+  > 
    <v-col cols="4" offset="4"> 
+    <v-subheader>Login</v-subheader>
     <v-text-field
       v-model="name"
       :counter="10"
