@@ -4,13 +4,15 @@
     v-model="valid"
     lazy-validation
   >
+   <v-col cols="4" offset="4"> 
     <v-text-field
       v-model="name"
       :counter="10"
       :rules="nameRules"
+      
       label="Name"
       required
-      autofocus=true
+      box
     ></v-text-field>
 
     <v-text-field
@@ -58,6 +60,7 @@
     >
       Reset Validation
     </v-btn>
+   </v-col>
   </v-form>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase" align="center"> 
+      <v-toolbar-title class="headline text-uppercase"> 
         <span class="font-weight-light">Schedules+</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
