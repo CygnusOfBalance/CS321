@@ -21,7 +21,6 @@
 
 <script>
 import loginPage from './components/loginPage';
-
 export default {
   name: 'App',
   components: {
