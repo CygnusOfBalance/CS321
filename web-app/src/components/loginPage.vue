@@ -6,15 +6,6 @@
   > 
    <v-col cols="4" offset="4"> 
     <v-subheader>Login</v-subheader>
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      
-      label="Name"
-      required
-      box
-    ></v-text-field>
 
     <v-text-field
       v-model="email"
@@ -23,44 +14,32 @@
       required
     ></v-text-field>
 
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
+    <v-text-field
+      v-model="pw"
+      :rules="nameRules"
+      
+      label="Password"
       required
-    ></v-select>
-
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
+      box
+    ></v-text-field>
 
     <v-btn
       :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="validate"
+      @click="POST"
     >
-      Validate
+      Login
     </v-btn>
 
     <v-btn
-      color="error"
+      color="blue"
       class="mr-4"
       @click="reset"
     >
-      Reset Form
+      Create Calendar
     </v-btn>
 
-    <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
-    </v-btn>
    </v-col>
   </v-form>
 </template>
@@ -69,22 +48,14 @@
   export default {
     data: () => ({
       valid: true,
-      name: '',
+      pw: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => !!v || 'Password is Required',
       ],
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
       ],
       checkbox: false,
     }),
@@ -100,6 +71,19 @@
       resetValidation () {
         this.$refs.form.resetValidation()
       },
+      POST(){
+      	// send a POST request
+      	this.axios({
+        	method: 'post',
+        	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
+        	data: {
+        	  email,
+        	  pw
+        	}
+      	}).then(response => {
+    	// returning the data here allows the caller to get it through another .then(...)
+    	console.log(response)
+      });
     },
   }
 </script>
