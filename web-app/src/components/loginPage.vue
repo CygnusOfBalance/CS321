@@ -10,7 +10,7 @@
     <v-text-field
       v-model="email"
       :rules="emailRules"
-      label="E-mail"
+      label="email"
       required
     ></v-text-field>
 
@@ -58,6 +58,9 @@
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       checkbox: false,
+	
+      name: '',
+      pw: '',
     }),
     methods: {
       validate () {
@@ -77,8 +80,8 @@
         	method: 'post',
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
         	data: {
-        	  email,
-        	  pw
+        	  name: this.name,
+		  Password: this.Password
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
