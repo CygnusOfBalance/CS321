@@ -5,7 +5,7 @@
     lazy-validation
   > 
    <v-col cols="4" offset="4"> 
-    <v-subheader>Login</v-subheader>
+    <v-subheader>Create Calendar</v-subheader>
 
     <v-text-field
       v-model="email"
@@ -23,30 +23,27 @@
       box
     ></v-text-field>
 
+    <v-text-field
+      v-model="cname"
+
+      label="Calendar Name"
+      required
+      box
+    ></v-text-field>
+
     <v-btn
-      :disabled="!valid"
-      color="success"
+      color="blue"
       class="mr-4"
       @click="POST"
     >
-      Login
-    </v-btn>
-
-    <v-btn
-      class="mr-4"
-      color="blue"
-      @click="navigate"
-    >
       Create Calendar
     </v-btn>
-
 
    </v-col>
   </v-form>
 </template>
 
 <script>
-  import router from '../router.js' ;
   export default {
     data: () => ({
       valid: true,
@@ -62,6 +59,8 @@
       checkbox: false,
 	
       name: '',
+      pw: '',
+      cname: '',
     }),
     methods: {
       validate () {
@@ -75,10 +74,6 @@
       resetValidation () {
         this.$refs.form.resetValidation()
       },
- 
-      navigate() {
-    	router.push("/create-calendar");
-      },
       POST(){
       	// send a POST request
       	this.axios({
@@ -86,7 +81,8 @@
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
         	data: {
         	  name: this.name,
-		  Password: this.Password
+		  Password: this.Password,
+		  cname: this.cname, 
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
@@ -94,5 +90,5 @@
       });
     },
   }
- }
+  }
 </script>

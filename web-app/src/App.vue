@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import loginPage from './components/loginPage';
+import loginPage from './components/loginPage.vue';
+import createCalendar from './components/createCalendar.vue';
 
 export default {
   name: 'App',
