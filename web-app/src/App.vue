@@ -14,18 +14,20 @@
     </v-app-bar>
 
     <v-content>
-      <loginPage/>
+      <userPage/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import loginPage from './components/loginPage';
+//import loginPage from './components/loginPage';
+import userPage from './components/UserPage';
 
 export default {
   name: 'App',
   components: {
-    loginPage,
+    //loginPage,
+    userPage,
   },
   data: () => ({
     //
