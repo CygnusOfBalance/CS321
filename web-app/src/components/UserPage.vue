@@ -68,6 +68,7 @@
           v => !!v || 'Password mismatch',
       ],
     }),
+
     methods: {
         createUser () {
             //Validate first
@@ -77,7 +78,7 @@
                 console.log("Valid and sending data...")
                 this.axios({
                     method: 'post',
-                    url: '',
+                    url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
                     data: {
                         email: this.email,
                         password: this.password
