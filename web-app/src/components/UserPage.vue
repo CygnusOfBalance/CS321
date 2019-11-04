@@ -30,7 +30,7 @@
         :rules="doubleCheckRules"
         :type='"password"'
 
-        label="Retype"
+        label="Retype Password"
 
         required
     ></v-text-field>
@@ -58,14 +58,13 @@
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
-      password: 'asdf',
+      password: '',
       passwordRules: [
           v => !!v || 'Password is required'
       ],
       retypePassword: '',
       doubleCheckRules: [
           v => !!v || 'Password mismatch',
-          v => v == this.retypePassword || 'Password must match.'
       ],
     }),
     methods: {
