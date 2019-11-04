@@ -82,7 +82,7 @@
       	// send a POST request
       	this.axios({
         	method: 'post',
-        	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
+        	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser',
         	data: {
         	  name: this.name,
 		  Password: this.Password
