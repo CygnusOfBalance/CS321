@@ -76,7 +76,7 @@
       },
  
       navigate() {
-    	router.push("/create-calendar");
+    	this.$router.push("/create-calendar");
       },
       POST(){
       	// send a POST request
