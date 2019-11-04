@@ -25,6 +25,16 @@
         required
     ></v-text-field>
 
+    <v-text-field
+        v-model="retypePassword"
+        :rules="doubleCheckRules"
+        :type='"password"'
+
+        label="Retype"
+
+        required
+    ></v-text-field>
+    
 
     <v-btn
       :disabled="!valid"
@@ -48,9 +58,14 @@
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
-      password: '',
+      password: 'asdf',
       passwordRules: [
           v => !!v || 'Password is required'
+      ],
+      retypePassword: '',
+      doubleCheckRules: [
+          v => !!v || 'Password mismatch',
+          v => v == this.retypePassword || 'Password must match.'
       ],
     }),
     methods: {
