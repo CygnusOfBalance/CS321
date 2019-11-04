@@ -14,7 +14,7 @@
     </v-app-bar>
 
     <v-content>
-      <loginPage/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
@@ -27,6 +27,7 @@ export default {
   name: 'App',
   components: {
     loginPage,
+    createCalendar
   },
   data: () => ({
     //

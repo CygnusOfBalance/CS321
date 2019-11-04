@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 //import Home from './views/Home.vue'
-import loginPage from './components/loginPage'
-import createCalendar from './components/createCalendar'
+import loginPage from './components/loginPage.vue'
+import createCalendar from './components/createCalendar.vue'
 
 Vue.use(Router)
 
