@@ -46,8 +46,6 @@
 </template>
 
 <script>
-  import router from '../router.js';
-  
   export default {
     data: () => ({
       valid: true,
