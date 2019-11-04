@@ -27,6 +27,7 @@
 
     <v-text-field
         v-model="retypePassword"
+        :error-messages='passwordMatch()'
         :rules="doubleCheckRules"
         :type='"password"'
 
@@ -84,6 +85,9 @@
                 }).then(response => console.log(response))
             }
         },
+        passwordMatch() {
+          return (this.password === this.retypePassword) ? '' : 'Mismatched Password';
+        }
 
 
     },
