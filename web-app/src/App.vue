@@ -14,17 +14,20 @@
     </v-app-bar>
 
     <v-content>
-      <loginPage/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import loginPage from './components/loginPage';
+import loginPage from './components/loginPage.vue';
+import createCalendar from './components/createCalendar.vue';
+
 export default {
   name: 'App',
   components: {
     loginPage,
+    createCalendar
   },
   data: () => ({
     //

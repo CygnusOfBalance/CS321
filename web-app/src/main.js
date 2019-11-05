@@ -1,13 +1,15 @@
 import Vue from 'vue'
-import App from './App.vue'
+import loginPage from './App.vue'
 import vuetify from './plugins/vuetify';
-import router from './router'
-import axios from 'vue-axios'
+import axios from './plugins/axios';
+import router from './router';
 //import loginPage from './components/loginPage';
 
+
+
 new Vue({
-  axios, 
-  vuetify,
+  axios,
   router,
-  render: h => h(App)
+  vuetify,
+  render: h => h(loginPage)
 }).$mount('#app')
