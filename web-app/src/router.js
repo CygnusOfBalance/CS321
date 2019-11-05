@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import loginPage from './components/loginPage.vue'
 import createCalendar from './components/createCalendar.vue'
 import userPage from './components/UserPage.vue'
+import calendarPage from './components/CalendarPage.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/create-user',
       name: 'create-user',
       component: userPage
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: calendarPage
     }
   ]
 })
