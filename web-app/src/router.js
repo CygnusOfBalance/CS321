@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 //import Home from './views/Home.vue'
-import loginPage from './components/loginPage.vue'
-import createCalendar from './components/createCalendar.vue'
-import userPage from './components/UserPage.vue'
-import calendarPage from './components/CalendarPage.vue'
+import loginPage from './views/loginPage.vue'
+import createCalendar from './views/createCalendarPage.vue'
+import userPage from './views/UserPage.vue'
+import calendarPage from './views/CalendarPage.vue'
 
 Vue.use(Router)
 
