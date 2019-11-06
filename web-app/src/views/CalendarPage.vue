@@ -1,6 +1,7 @@
 <template>
     <v-app id="inspire">
         <v-row width>
+	    <UserInvite />
             <v-col cols='12' offset='3'>
                 <v-sheet height="600" width="700">
                     <v-calendar
@@ -41,11 +42,18 @@
                     </v-calendar>
                 </v-sheet>
 
+		<v-btn 
+	  	 color="success"
+	 	 class="mr-4"
+		>
+ 		 Filter Buttons
+ 		</v-btn>
+
             
 
             </v-col>
             
-            <UserInvite />
+
             
         </v-row>
 
