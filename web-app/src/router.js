@@ -1,9 +1,10 @@
-  
 import Vue from 'vue'
 import Router from 'vue-router'
 //import Home from './views/Home.vue'
-import loginPage from './components/loginPage.vue'
-import createCalendar from './components/createCalendar.vue'
+import loginPage from './views/loginPage.vue'
+import createCalendar from './views/createCalendarPage.vue'
+import userPage from './views/UserPage.vue'
+import calendarPage from './views/CalendarPage.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,16 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: createCalendar
+    },
+    {
+      path: '/create-user',
+      name: 'create-user',
+      component: userPage
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: calendarPage
     }
   ]
 })
