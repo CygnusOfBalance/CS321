@@ -1,8 +1,8 @@
 <template>
     <v-app id="inspire">
         <v-row width>
-            <v-col>
-                <v-sheet height="600" width="800">
+            <v-col cols='12' offset='3'>
+                <v-sheet height="600" width="700">
                     <v-calendar
                     ref="calendar"
                     :now="today"
