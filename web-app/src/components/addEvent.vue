@@ -66,7 +66,6 @@
 </template>
 <script>
 import calendar from '../views/CalendarPage'
-import EventBus from '../eventBus.js'
   export default {
     data: () => ({
 	year1: "",

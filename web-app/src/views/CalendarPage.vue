@@ -64,7 +64,6 @@
 <script>
 import UserInvite from '../components/UserInvite'
 import addEvent from '../components/addEvent'
-import EventBus from '../eventBus.js'
 export default {
     components: {
         UserInvite,
