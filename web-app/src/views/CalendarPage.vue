@@ -1,8 +1,9 @@
 <template>
     <v-app id="inspire">
-        <v-row width>
-	    <UserInvite />
-            <v-col cols='12' offset='3'>
+
+        <v-row justify='center' align='center'>
+	   <addEvent/>
+
                 <v-sheet height="600" width="700">
                     <v-calendar
                     ref="calendar"
@@ -45,13 +46,13 @@
 		<v-btn 
 	  	 color="success"
 	 	 class="mr-4"
+		 @click="addEvent('event', '2019-11-18 09:00', '2019-11-18 10:00')"
 		>
  		 Filter Buttons
  		</v-btn>
 
             
 
-            </v-col>
             
 
             
@@ -62,32 +63,28 @@
 
 <script>
 import UserInvite from '../components/UserInvite'
-
+import addEvent from '../components/addEvent'
 export default {
     components: {
-        UserInvite
+        UserInvite,
+	addEvent
     },
     data: () => ({
-        today: '2019-01-08',
-        events: [
-        {
+        today: '2019-11-18',
+        events: [ {
             name: 'Weekly Meeting',
             start: '2019-01-07 09:00',
             end: '2019-01-07 10:00',
-        },
-        {
-            name: 'Thomas\' Birthday',
-            start: '2019-01-10',
-        },
-        {
-            name: 'Mash Potatoes',
-            start: '2019-01-09 12:30',
-            end: '2019-01-09 15:30',
-        },
-        ],
+        }],
     }),
-    methods: () => {
-
-    }
+    methods: {
+	addEvent : function(name1, start1, finish1){
+		this.events.push({
+			name: name1,
+			start: start1, 
+			end: finish1 
+		});
+    	},
+   }
 }
 </script>
