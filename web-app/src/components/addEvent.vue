@@ -8,8 +8,8 @@
     <v-subheader>Add Event</v-subheader>
 
     <v-select
-	v-model="year"
-        :items="year"
+	v-model="year1"
+        :items="years"
         :menu-props="{ maxHeight: '400' }"
         label="Select"
         hint="Select year of event"
@@ -17,8 +17,8 @@
     ></v-select>
 
     <v-select
-	v-model="month"
-        :items="month"
+	v-model="month1"
+        :items="months"
         :menu-props="{ maxHeight: '400' }"
         label="Select"
         hint="Select month of event"
@@ -26,8 +26,8 @@
     ></v-select>
 
     <v-select
-	v-model="day"
-        :items="day"
+	v-model="day1"
+        :items="days"
         :menu-props="{ maxHeight: '400' }"
         label="Select"
         hint="Select day of event"
@@ -47,13 +47,12 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="name"
+      v-model="name1"
       label="Event Name"
       required
     ></v-text-field>
 
     <v-btn
-      :disabled="!valid"
       color="success"
       class="mr-4"
       @click="addEvent"
@@ -67,17 +66,31 @@
 </template>
 <script>
 import calendar from '../views/CalendarPage'
+import EventBus from '../eventBus.js'
   export default {
     data: () => ({
-	year: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012],
-	day: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+	year1: "",
+	month1: "", 
+	day1: "",
+	name1: "",
+	starttime: "",
+	endtime: "",
+
+	valid: true,
+
+	years: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012],
+	days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 		20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-	month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-	events: [],
+	months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+	events: [{
+		name: 'Stuff',
+		start: '2019-01-07 09:00',
+		end: '2019-01-07 10:00'	
+	}],
     }),
     methods: {
 	addEvent(){
-		this.$refs.CalendarPage.addEvent(name, '2019-11-18 09:00', '2019-11-18 10:00');
+		//CALL TO DATABASE TO STORE
 	} 
     }
   }

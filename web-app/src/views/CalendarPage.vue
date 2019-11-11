@@ -46,7 +46,7 @@
 		<v-btn 
 	  	 color="success"
 	 	 class="mr-4"
-		 @click="addEvent('event', '2019-11-18 09:00', '2019-11-18 10:00')"
+		 @click="addEvent()"
 		>
  		 Filter Buttons
  		</v-btn>
@@ -64,27 +64,31 @@
 <script>
 import UserInvite from '../components/UserInvite'
 import addEvent from '../components/addEvent'
+import EventBus from '../eventBus.js'
 export default {
     components: {
         UserInvite,
 	addEvent
     },
     data: () => ({
+	name1: "",
+	year1: "", 
+	month1: "",
+	day1: "",
+	starttime: "",
+	endtime: "",
+
         today: '2019-11-18',
-        events: [ {
+        events: [{
             name: 'Weekly Meeting',
             start: '2019-01-07 09:00',
             end: '2019-01-07 10:00',
         }],
     }),
     methods: {
-	addEvent : function(name1, start1, finish1){
-		this.events.push({
-			name: name1,
-			start: start1, 
-			end: finish1 
-		});
+	addEvent() {
+		//Constant call to database to refresh calendar events//
     	},
-   }
+   },
 }
 </script>
