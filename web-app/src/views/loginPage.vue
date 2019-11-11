@@ -17,6 +17,7 @@
     <v-text-field
       v-model="pw"
       :rules="nameRules"
+      :type="'password'"
       
       label="Password"
       required
@@ -91,6 +92,14 @@
     	// returning the data here allows the caller to get it through another .then(...)
     	console.log(response)
       });
+	
+      //IF UNAME & PASS IN DB 
+      if(console.log == "200"){
+      	this.$router.push("/calendar");
+      }
+      else{
+	window.alert("Error Username or Password Incorrect");
+      }
     },
   }
  }
