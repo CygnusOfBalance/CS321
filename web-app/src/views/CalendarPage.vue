@@ -2,7 +2,7 @@
     <v-app id="inspire">
 
         <v-row justify='center' align='center'>
-	   <addEvent/>
+	       <addEvent/>
 
                 <v-sheet height="600" width="700">
                     <v-calendar
@@ -43,21 +43,20 @@
                     </v-calendar>
                 </v-sheet>
 
-		<v-btn 
-	  	 color="success"
-	 	 class="mr-4"
-		 @click="addEvent()"
-		>
- 		 Filter Buttons
- 		</v-btn>
-
-            
-
-            
-
-            
         </v-row>
-
+        <!--will change once we get api call for amount of people in calendar-->
+                        <v-col cols="3" align="center" offset="5">
+                          <p>Filter Schedules</p>
+        		              <v-btn
+                            v-for="n in 4"
+                            :key="n"
+        	                  color="success"
+        	 	                class="mr-4"
+                            label=:key
+        		              >
+                          {{ label }}
+         		              </v-btn>
+                        </v-col>
     </v-app>
 </template>
 
@@ -71,11 +70,12 @@ export default {
     },
     data: () => ({
 	name1: "",
-	year1: "", 
+	year1: "",
 	month1: "",
 	day1: "",
 	starttime: "",
 	endtime: "",
+  label: "key",
 
         today: '2019-11-18',
         events: [{
