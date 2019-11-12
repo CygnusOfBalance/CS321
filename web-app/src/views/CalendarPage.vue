@@ -4,7 +4,10 @@
         <v-row justify='center' align='center'>
 	       <addEvent/>
 
-                <v-sheet height="600" width="700">
+                <v-sheet height="400" width="700">
+		    <v-col offset="5">
+		    	<p>Group 3s Calendar</p>
+		    </v-col>
                     <v-calendar
                     ref="calendar"
                     :now="today"
@@ -45,18 +48,22 @@
 
         </v-row>
         <!--will change once we get api call for amount of people in calendar-->
-                        <v-col cols="3" align="center" offset="5">
+                        <v-col cols="3" align="center" offset="5"> 
                           <p>Filter Schedules</p>
-        		              <v-btn
-                            v-for="n in 4"
-                            :key="n"
-        	                  color="success"
-        	 	                class="mr-4"
-                            label=:key
-        		              >
-                          {{ label }}
-         		              </v-btn>
-                        </v-col>
+			  <v-btn-toggle
+			  	v-model="toggle_exclusive"
+				multiple
+				color="white"
+			  >
+        			<v-btn
+                            		v-for="n in this.users.length"
+					:color="colorOrder[n-1]"
+                            		:key="n"
+        			>
+                          		{{ users[n-1] }}
+                        	</v-btn>
+			  </v-btn-toggle>
+                 </v-col>
     </v-app>
 </template>
 
@@ -70,12 +77,13 @@ export default {
     },
     data: () => ({
 	name1: "",
+	color1: "green",
 	year1: "",
 	month1: "",
 	day1: "",
 	starttime: "",
 	endtime: "",
-  label: "key",
+  	label: "key",
 
         today: '2019-11-18',
         events: [{
@@ -83,11 +91,19 @@ export default {
             start: '2019-01-07 09:00',
             end: '2019-01-07 10:00',
         }],
+	colorOrder: ["blue", "red", "orange", "green", "yellow"],
+	users:["Noah", "Peter", "Holden", "Thomas"],
     }),
     methods: {
 	addEvent() {
 		//Constant call to database to refresh calendar events//
     	},
+	dynamBtn: function(n) {
+		this.label=users.slice(n, n+1);
+	},
+	retColor: function(n) {
+		this.colorOrder=colorOrder.slice(n, n+1);
+	}
    },
 }
 </script>
