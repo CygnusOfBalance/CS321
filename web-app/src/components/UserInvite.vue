@@ -1,30 +1,38 @@
 <template>
     <v-form>
-        <v-col cols="4"  offset="4">
+        <v-col cols="4"  justify="center" offset="2">
+		<v-btn
+			color=success
+			class="mr-4"
+			@click="copyLink"
+		>
+		Copy Share Link
+		</v-btn>
+        	<input type="hidden" id="address" :value="url">
         </v-col>
-        <v-text-field>
-        </v-text-field>
 
-        Share URL: {{url}}
-        <input type='hidden' id='address' :value= url>
     </v-form>
 </template>
 
 <script>
 export default {
     data: () => ({
-        url: "locahost:8080/create-user"
+        url: "locahost:8080/create-user",
     }),
     methods: {
         copyLink () {
-            text = document.querySelector('#address')
+            let text1 = document.querySelector('#address')
+	    text1.setAttribute('type', 'text') 
+	    text1.select()
 
             try{
-                document.execCommand('copy')
+                var successful = document.execCommand('copy');
+		text1.setAttribute('type', 'hidden');
+		alert("Share link was copied to clipboard");
             } catch(err) {
                 console.log(err)
             }
-        }
+        },
     }
 }
 </script>
