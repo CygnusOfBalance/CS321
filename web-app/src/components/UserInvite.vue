@@ -17,7 +17,7 @@
 <script>
 export default {
     data: () => ({
-        url: "localhost:8080/create-user",
+        url: "localhost:8080/#/create-user",
     }),
     methods: {
         copyLink () {
