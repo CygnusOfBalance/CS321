@@ -95,11 +95,12 @@ import calendar from '../views/CalendarPage'
         begin = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.starttime
         ending = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.endtime
 
+        //May need to add user
         this.axios({
           method: 'POST',
           url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser",
           data: {
-            user: this.name1,
+            eventName: this.name1,
             start: begin,
             end: ending
           }
