@@ -1,6 +1,6 @@
 <template>
     <v-form>
-        <v-col cols="4"  justify="center" offset="2">
+        <v-col justify="start" align="start">
 		<v-btn
 			color=success
 			class="mr-4"
