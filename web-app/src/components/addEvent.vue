@@ -68,29 +68,43 @@
 import calendar from '../views/CalendarPage'
   export default {
     data: () => ({
-	year1: "",
-	month1: "", 
-	day1: "",
-	name1: "",
-	starttime: "",
-	endtime: "",
+      year1: "",
+      month1: "", 
+      day1: "",
+      name1: "",
+      starttime: "",
+      endtime: "",
 
-	valid: true,
+      valid: true,
 
-	years: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012],
-	days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-		20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-	months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-	events: [{
-		name: 'Stuff',
-		start: '2019-01-07 09:00',
-		end: '2019-01-07 10:00'	
-	}],
+      years: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012],
+      days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+      months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      events: [{
+        name: 'Stuff',
+        start: '2019-01-07 09:00',
+        end: '2019-01-07 10:00'	
+      }],
     }),
     methods: {
-	addEvent(){
-		//CALL TO DATABASE TO STORE
-	} 
+      addEvent(){
+        //CALL TO DATABASE TO STORE
+        //Formatting
+        
+        begin = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.starttime
+        ending = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.endtime
+
+        this.axios({
+          method: 'POST',
+          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser",
+          data: {
+            user: this.name1,
+            start: begin,
+            end: ending
+          }
+        })
+      } 
     }
   }
 </script>
