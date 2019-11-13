@@ -1,8 +1,8 @@
 <template>
 
     <v-app id="inspire">
-        <UserInvite />
-        <v-row justify='center' align='center'>
+	
+        <v-row justify='center' align='center'>	
 	       <addEvent/>
                 <v-sheet height="400" width="700">
 		    <v-col offset="5">
@@ -45,9 +45,11 @@
                     </template>
                     </v-calendar>
                 </v-sheet>
+		
+		<userInvite/>
         </v-row>
         <!--will change once we get api call for amount of people in calendar-->
-                        <v-col cols="3" align="center" offset="5"> 
+                        <v-col cols="12" align="center"> 
                           <p>Filter Schedules</p>
 			  <v-btn-toggle
 			  	v-model="toggle_exclusive"
