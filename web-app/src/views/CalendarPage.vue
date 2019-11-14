@@ -54,17 +54,18 @@
                           <p>Filter Schedules</p>
 			  <v-btn-toggle
 			  	v-model="toggle_exclusive"
-				multiple
-				color="white"
+				  multiple
+				  color="white"
 			  >
-        			<v-btn
-                            		v-for="n in this.users.length"
-					:color="colorOrder[n-1]"
-                            		:key="n"
-        			>
-                          		{{ users[n-1] }}
-                        	</v-btn>
-			  </v-btn-toggle>
+          <v-btn
+            v-for="n in this.users.length"
+					  :color="colorOrder[n-1]"
+            :key="n"
+            @click="filter(users[n-1])"
+          >
+          {{ users[n-1] }}
+          </v-btn>
+			 </v-btn-toggle>
                  </v-col>
     </v-app>
 </template>
@@ -75,9 +76,10 @@ import addEvent from '../components/addEvent'
 export default {
     components: {
         UserInvite,
-	addEvent
+	      addEvent
     },
     data: () => ({
+       toggle_exclusive: undefined,
     	 name1: "",
 	     color1: "green",
 	     year1: "",
@@ -91,7 +93,7 @@ export default {
         name: 'Weekly Meeting',
         start: '2019-11-18 09:00',
         end: '2019-11-18 10:00',
-	       color: "blue",
+	      color: "blue",
        }],
 	     colorOrder: ["blue", "red", "orange", "green", "yellow"],
 	     users:["Noah", "Peter", "Holden", "Thomas"],
@@ -99,7 +101,17 @@ export default {
     methods: {
 	     getEventColor(event){
         return event.color
-       }
+       },
+
+       filter: function(name1){
+        if(this.toggle_exclusive != "0"){
+          //Filter Out(Filter out via name)
+          //Alg: use indexOf to find
+        }
+        else{
+          //Filter In
+        }
+       },
        //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
        /*mounted: function () {
         this.axios({
