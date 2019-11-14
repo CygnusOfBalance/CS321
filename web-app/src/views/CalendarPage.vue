@@ -64,9 +64,9 @@
             @click="filter(users[n-1])"
           >
           {{ users[n-1] }}
-          </v-btn>
-			 </v-btn-toggle>
-                 </v-col>
+            </v-btn>
+			    </v-btn-toggle>
+                    </v-col>
     </v-app>
 </template>
 
@@ -76,93 +76,125 @@ import addEvent from '../components/addEvent'
 export default {
     components: {
         UserInvite,
-	      addEvent
+        addEvent
     },
     data: () => ({
-       toggle_exclusive: "",
-    	 name1: "",
-	     color1: "green",
-	     year1: "",
-	     month1: "",
-	     day1: "",
-	     starttime: "",
-	     endtime: "",
-       label: "key",
-       today: "",
-       events: [{
-          name: 'Weekly Meeting',
-          start: '2019-11-13 09:00',
-          end: '2019-11-13 10:00',
+        toggle_exclusive: "",
+        name1: "",
+        color1: "green",
+        year1: "",
+        month1: "",
+        day1: "",
+        starttime: "",
+        endtime: "",
+        label: "key",
+        today: "",
+        events: [{
+            name: 'Weekly Meeting',
+            start: '2019-11-10 09:00',
+            end: '2019-11-10 10:00',
 	        color: "blue",
-       },
-       {
-          name: 'Weekly Meeting',
-          start: '2019-11-12 09:00',
-          end: '2019-11-12 10:00',
-          color: "red",
-       },
-       {
-          name: 'Weekly Meeting',
-          start: '2019-11-14 09:00',
-          end: '2019-11-14 10:00',
-          color: "orange",
-       }
-       ],
-       removedEvents: [],
-	     colorOrder: ["blue", "red", "orange", "green", "yellow"],
-	     users:["Noah", "Peter", "Holden", "Thomas"],
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-13 09:00',
+            end: '2019-11-13 10:00',
+	         color: "blue",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-12 09:00',
+            end: '2019-11-12 10:00',
+            color: "red",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-12 05:00',
+            end: '2019-11-12 07:00',
+            color: "red",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-14 09:00',
+            end: '2019-11-14 10:00',
+            color: "orange",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-15 09:00',
+            end: '2019-11-15 10:00',
+	        color: "blue",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-16 12:00',
+            end: '2019-11-16 15:00',
+            color: "green",
+        },{
+            name: 'Weekly Meeting',
+            start: '2019-11-15 16:00',
+            end: '2019-11-15 22:00',
+            color: "green",
+        },
+        ],
+        removedEvents: [],
+            colorOrder: ["blue", "red", "orange", "green", "yellow"],
+	        users:["Noah", "Peter", "Holden", "Thomas"],
     }),
+
     methods: {
-	     getEventColor(event){
-        return event.color
-       },
+	    getEventColor(event){
+            return event.color
+        },
 
-       getDateNow() {
-        var d = new Date();
-        this.today = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
-        return this.today;
-       },
+        //Get current date for the calendar
+        getDateNow() {
+            var d = new Date();
+            this.today = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
+            return this.today;
+        },
 
-       filter: function(name1){
-        var correspondingColor = this.colorOrder[this.users.indexOf(name1)];
-        if(!this.toggle_exclusive.includes(this.users.indexOf(name1))){
-          //Filter Out(Filter out via name)
-          //Alg: use indexOf to find
+        //Filters out and in the given user's schedule
+        //Filter Out(Filter out via name)
+        //Alg: use indexOf to find
+        filter: function(name1){
+            var correspondingColor = this.colorOrder[this.users.indexOf(name1)];
 
-          var takenOut = []
-          for (var i = 0; i < this.events.length;  i++){
-              if(this.events[i].color == correspondingColor){
-                console.log("Removing color")
-                takenOut.push(this.events[i])
-                this.events.splice(i, 1);
-              }
-          }
+            //Filter out the color
+            if(!this.toggle_exclusive.includes(this.users.indexOf(name1))){
+                //Array of events taken out
+                var takenOut = []
+                for (var i = 0; i < this.events.length;  i++){
+                    if(this.events[i].color == correspondingColor){
+                        console.log("Removing color:" + this.events[i].color)
+                        takenOut.push(this.events[i])
+                        this.events.splice(i, 1);
+                        //Prevent skipping when removing
+                        i--
+                    }
+            }
 
-          this.removedEvents = this.removedEvents.concat(takenOut)
-          console.log(this.removedEvents)
-        }
-        else{
-          //Filter In
-          console.log(this.removedEvents);
+            //Add towards the amount of removed events
+            this.removedEvents = this.removedEvents.concat(takenOut)
+            }
+            //Filter in a color
+            else{
+                //Array of events about to be active
+                var readyToPush = [];
+                for(var i = 0; i < this.removedEvents.length; i++){
+                    if(this.removedEvents[i].color == correspondingColor){
+                        readyToPush.push(this.removedEvents[i]);
+                        this.removedEvents.splice(i, 1);
+                        //Prevent skipping after splice
+                        i--
+                    }
+                }
 
-          var readyToPush = [];
-          for(var i = 0; i < this.removedEvents.length; i++){
-              if(this.removedEvents[i].color == correspondingColor){
-                  readyToPush.push(this.removedEvents[i]);
-                  this.removedEvents.splice(i, 1);
-              }
-          }
-
-          this.events = this.events.concat(readyToPush);
-        }
-       },
-       //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
-       /*mounted: function () {
+                //Add towards the amount of events active
+                this.events = this.events.concat(readyToPush);
+            }
+        },
+        //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
+        /*mounted: function () {
         this.axios({
-          method: 'GET',
-          //url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/",
-        }).then(response => {console.log(response)});
-      }*/
-   },
+                method: 'GET',
+                //url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/",
+            }).then(response => {console.log(response)});
+        }*/
+    },
 }
 </script>
