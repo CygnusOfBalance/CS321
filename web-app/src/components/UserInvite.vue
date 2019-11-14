@@ -22,13 +22,13 @@ export default {
     methods: {
         copyLink () {
             let text1 = document.querySelector('#address')
-	    text1.setAttribute('type', 'text') 
+	    text1.setAttribute('type', 'text')
 	    text1.select()
 
             try{
                 var successful = document.execCommand('copy');
-		text1.setAttribute('type', 'hidden');
-		alert("Share link was copied to clipboard");
+		             text1.setAttribute('type', 'hidden');
+		             alert("Share link was copied to clipboard");
             } catch(err) {
                 console.log(err)
             }

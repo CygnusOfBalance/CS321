@@ -1,8 +1,8 @@
 <template>
 
     <v-app id="inspire">
-	
-        <v-row justify='center' align='center'>	
+
+        <v-row justify='center' align='center'>
 	       <addEvent/>
                 <v-sheet height="400" width="700">
 		    <v-col offset="5">
@@ -13,6 +13,7 @@
                     :now="today"
                     :value="today"
                     :events="events"
+                    :event-color="getEventColor"
                     color="primary"
                     type="week"
                     >
@@ -45,11 +46,11 @@
                     </template>
                     </v-calendar>
                 </v-sheet>
-		
+
 		<userInvite/>
         </v-row>
         <!--will change once we get api call for amount of people in calendar-->
-                        <v-col cols="12" align="center"> 
+                        <v-col cols="12" align="center">
                           <p>Filter Schedules</p>
 			  <v-btn-toggle
 			  	v-model="toggle_exclusive"
@@ -77,34 +78,28 @@ export default {
 	addEvent
     },
     data: () => ({
-	name1: "",
-	color1: "green",
-	year1: "",
-	month1: "",
-	day1: "",
-	starttime: "",
-	endtime: "",
-  	label: "key",
-
-        today: '2019-11-18',
-        events: [{
-            name: 'Weekly Meeting',
-            start: '2019-01-07 09:00',
-            end: '2019-01-07 10:00',
-        }],
-	colorOrder: ["blue", "red", "orange", "green", "yellow"],
-	users:["Noah", "Peter", "Holden", "Thomas"],
+    	 name1: "",
+	     color1: "green",
+	     year1: "",
+	     month1: "",
+	     day1: "",
+	     starttime: "",
+	     endtime: "",
+       label: "key",
+       today: '2019-11-18',
+       events: [{
+        name: 'Weekly Meeting',
+        start: '2019-11-18 09:00',
+        end: '2019-11-18 10:00',
+	       color: "blue",
+       }],
+	     colorOrder: ["blue", "red", "orange", "green", "yellow"],
+	     users:["Noah", "Peter", "Holden", "Thomas"],
     }),
     methods: {
-	addEvent() {
-		//Constant call to database to refresh calendar events//
-    	},
-	dynamBtn: function(n) {
-		this.label=users.slice(n, n+1);
-	},
-	retColor: function(n) {
-		this.colorOrder=colorOrder.slice(n, n+1);
-	}
+	     getEventColor(event){
+        return event.color
+       }
    },
 }
 </script>
