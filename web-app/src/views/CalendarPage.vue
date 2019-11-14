@@ -91,8 +91,8 @@ export default {
        today: "",
        events: [{
         name: 'Weekly Meeting',
-        start: '2019-11-18 09:00',
-        end: '2019-11-18 10:00',
+        start: '2019-11-13 09:00',
+        end: '2019-11-13 10:00',
 	      color: "blue",
        }],
         removedEvents: [],
@@ -111,7 +111,7 @@ export default {
        },
 
        filter: function(name1){
-        correspondingColor = colorOrder[this.users.indexOf(name1)]
+        var correspondingColor = this.colorOrder[this.users.indexOf(name1)]
 
         
 
@@ -119,15 +119,16 @@ export default {
           //Filter Out(Filter out via name)
           //Alg: use indexOf to find
           alert(this.toggle_exclusive);
-            takenOut = []
-          for (i = 0; i < this.events.length;  i++){
-              if(events[0].color === correspondingColor){
-                  
-              }
 
+          var takenOut = []
+          for (var i = 0; i < this.events.length;  i++){
+              if(this.events[i].color === correspondingColor){
+                console.log("Removing color")
+                takenOut.push(this.events.splice(i, 1));
+              }
           }
 
-          this.removedEvents = 
+          this.removedEvents = takenOut
         }
         else{
           //Filter In
