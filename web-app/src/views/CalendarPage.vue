@@ -95,6 +95,7 @@ export default {
         end: '2019-11-18 10:00',
 	      color: "blue",
        }],
+        removedEvents: [],
 	     colorOrder: ["blue", "red", "orange", "green", "yellow"],
 	     users:["Noah", "Peter", "Holden", "Thomas"],
     }),
@@ -110,10 +111,23 @@ export default {
        },
 
        filter: function(name1){
+        correspondingColor = colorOrder[this.users.indexOf(name1)]
+
+        
+
         if(this.toggle_exclusive != "0"){
           //Filter Out(Filter out via name)
           //Alg: use indexOf to find
           alert(this.toggle_exclusive);
+            takenOut = []
+          for (i = 0; i < this.events.length;  i++){
+              if(events[0].color === correspondingColor){
+                  
+              }
+
+          }
+
+          this.removedEvents = 
         }
         else{
           //Filter In
