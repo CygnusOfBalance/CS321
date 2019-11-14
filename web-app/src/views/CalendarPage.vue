@@ -100,6 +100,13 @@ export default {
 	     getEventColor(event){
         return event.color
        }
+       //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
+       /*mounted: function () {
+        this.axios({
+          method: 'GET',
+          //url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/",
+        }).then(response => {console.log(response)});
+      }*/
    },
 }
 </script>
