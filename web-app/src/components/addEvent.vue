@@ -3,8 +3,8 @@
     ref="form"
     v-model="valid"
     lazy-validation
-  > 
-   <v-col cols='30' align-self='stretch'> 
+  >
+   <v-col cols='30' align-self='stretch'>
     <v-subheader>Add Event</v-subheader>
 
     <v-select
@@ -39,7 +39,7 @@
       label="Start Time (HH:MM)"
       required
     ></v-text-field>
-    
+
     <v-text-field
       v-model="endtime"
       label="End Time (HH:MM)"
@@ -51,6 +51,15 @@
       label="Event Name"
       required
     ></v-text-field>
+
+    <v-select
+	      v-model="user1"
+        :items="users"
+        :menu-props="{ maxHeight: '400' }"
+        label="Select"
+        hint="Select User of event"
+        persistent-hint
+    ></v-select>
 
     <v-btn
       color="success"
@@ -69,9 +78,11 @@ import calendar from '../views/CalendarPage'
   export default {
     data: () => ({
       year1: "",
-      month1: "", 
+      month1: "",
       day1: "",
       name1: "",
+      user1: "",
+      color1: "",
       starttime: "",
       endtime: "",
 
@@ -84,28 +95,33 @@ import calendar from '../views/CalendarPage'
       events: [{
         name: 'Stuff',
         start: '2019-01-07 09:00',
-        end: '2019-01-07 10:00'	
+        end: '2019-01-07 10:00'
       }],
+      colorOrder: ["blue", "red", "orange", "green", "yellow"],
+      users:["Noah", "Peter", "Holden", "Thomas"],
     }),
     methods: {
       addEvent(){
         //CALL TO DATABASE TO STORE
         //Formatting
-        
-        begin = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.starttime
-        ending = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.endtime
+
+        var begin = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.starttime
+        var ending = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.endtime
+        var user2 = this.users.indexOf(this.user1)
+        var color2 = this.colorOrder[user2]
 
         //May need to add user
         this.axios({
           method: 'POST',
-          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser",
+          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/sendschedule",
           data: {
             eventName: this.name1,
             start: begin,
-            end: ending
+            end: ending,
+            color: color1
           }
         })
-      } 
+      }
     }
   }
 </script>
