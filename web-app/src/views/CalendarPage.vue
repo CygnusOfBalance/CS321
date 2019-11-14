@@ -79,7 +79,7 @@ export default {
 	      addEvent
     },
     data: () => ({
-       toggle_exclusive: undefined,
+       toggle_exclusive: "",
     	 name1: "",
 	     color1: "green",
 	     year1: "",
@@ -90,12 +90,25 @@ export default {
        label: "key",
        today: "",
        events: [{
-        name: 'Weekly Meeting',
-        start: '2019-11-13 09:00',
-        end: '2019-11-13 10:00',
-	      color: "blue",
-       }],
-        removedEvents: [],
+          name: 'Weekly Meeting',
+          start: '2019-11-13 09:00',
+          end: '2019-11-13 10:00',
+	        color: "blue",
+       },
+       {
+          name: 'Weekly Meeting',
+          start: '2019-11-12 09:00',
+          end: '2019-11-12 10:00',
+          color: "red",
+       },
+       {
+          name: 'Weekly Meeting',
+          start: '2019-11-14 09:00',
+          end: '2019-11-14 10:00',
+          color: "orange",
+       }
+       ],
+       removedEvents: [],
 	     colorOrder: ["blue", "red", "orange", "green", "yellow"],
 	     users:["Noah", "Peter", "Holden", "Thomas"],
     }),
@@ -111,11 +124,8 @@ export default {
        },
 
        filter: function(name1){
-        var correspondingColor = this.colorOrder[this.users.indexOf(name1)]
-
-        
-
-        if(this.toggle_exclusive != "0"){
+        var correspondingColor = this.colorOrder[this.users.indexOf(name1)];
+        if(!this.toggle_exclusive.includes(this.users.indexOf(name1))){
           //Filter Out(Filter out via name)
           //Alg: use indexOf to find
 
@@ -127,7 +137,7 @@ export default {
                 this.events.splice(i, 1);
               }
           }
-        
+
           this.removedEvents = this.removedEvents.concat(takenOut)
           console.log(this.removedEvents)
         }
