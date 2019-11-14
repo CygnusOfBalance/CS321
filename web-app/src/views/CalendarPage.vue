@@ -118,21 +118,32 @@ export default {
         if(this.toggle_exclusive != "0"){
           //Filter Out(Filter out via name)
           //Alg: use indexOf to find
-          alert(this.toggle_exclusive);
 
           var takenOut = []
           for (var i = 0; i < this.events.length;  i++){
-              if(this.events[i].color === correspondingColor){
+              if(this.events[i].color == correspondingColor){
                 console.log("Removing color")
-                takenOut.push(this.events.splice(i, 1));
+                takenOut.push(this.events[i])
+                this.events.splice(i, 1);
               }
           }
-
-          this.removedEvents = takenOut
+        
+          this.removedEvents = this.removedEvents.concat(takenOut)
+          console.log(this.removedEvents)
         }
         else{
           //Filter In
-          alert(this.toggle_exclusive)
+          console.log(this.removedEvents);
+
+          var readyToPush = [];
+          for(var i = 0; i < this.removedEvents.length; i++){
+              if(this.removedEvents[i].color == correspondingColor){
+                  readyToPush.push(this.removedEvents[i]);
+                  this.removedEvents.splice(i, 1);
+              }
+          }
+
+          this.events = this.events.concat(readyToPush);
         }
        },
        //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
