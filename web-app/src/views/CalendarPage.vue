@@ -10,7 +10,7 @@
 		    </v-col>
                     <v-calendar
                     ref="calendar"
-                    :now="today"
+                    :now="getDateNow"
                     :value="today"
                     :events="events"
                     :event-color="getEventColor"
@@ -88,7 +88,7 @@ export default {
 	     starttime: "",
 	     endtime: "",
        label: "key",
-       today: '2019-11-18',
+       today: "",
        events: [{
         name: 'Weekly Meeting',
         start: '2019-11-18 09:00',
@@ -103,13 +103,21 @@ export default {
         return event.color
        },
 
+       getDateNow() {
+        var d = new Date();
+        this.today = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
+        return this.today;
+       },
+
        filter: function(name1){
         if(this.toggle_exclusive != "0"){
           //Filter Out(Filter out via name)
           //Alg: use indexOf to find
+          alert(this.toggle_exclusive);
         }
         else{
           //Filter In
+          alert(this.toggle_exclusive)
         }
        },
        //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
