@@ -121,7 +121,7 @@ import calendar from '../views/CalendarPage'
             	end: ending,
             	color: color1	
 	    }],
-	    user: this.user1;
+	    user: this.user1
           }
         })
       }
