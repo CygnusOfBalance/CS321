@@ -3,8 +3,8 @@
     ref="form"
     v-model="valid"
     lazy-validation
-  > 
-   <v-col cols="4" offset="4"> 
+  >
+   <v-col cols="4" offset="4">
     <v-subheader>Login</v-subheader>
 
     <v-text-field
@@ -17,7 +17,7 @@
       v-model="pw"
       :rules="nameRules"
       :type="'password'"
-      
+
       label="Password"
       required
       box
@@ -59,7 +59,7 @@
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       checkbox: false,
-	
+
       name: '',
       status: '',
     }),
@@ -75,7 +75,7 @@
       resetValidation () {
         this.$refs.form.resetValidation()
       },
- 
+
       navigate() {
     	this.$router.push("/create-calendar");
       },
@@ -90,23 +90,22 @@
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
-    	this.setStatus(JSON.stringify(response))
+    	this.setStatus(JSON.stringify(response)),
+      this.routerPush();
       });
-      setTimeout(function(){
-      	if(this.status.includes("200")){
-      		this.$router.push("/calendar");
-      	}
-      	else{
-		window.alert("Error Username or Password Incorrect");
-		alert(this.status);
-        }
-      }, 2000);
-      //IF UNAME & PASS IN DB 
-      alert(this.status);
     },
     setStatus: function(string){
-	this.status = string;
-    }
+	   this.status = string;
+    },
+    routerPush: function(){
+      if(this.status.includes("200")){
+          this.$router.push("/calendar");
+      }
+      else{
+          window.alert("Error Username or Password Incorrect");
+          alert(this.status);
+      }
+   }
   }
  }
 </script>
