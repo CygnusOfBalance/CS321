@@ -61,6 +61,7 @@
       checkbox: false,
 	
       name: '',
+      status: '',
     }),
     methods: {
       validate () {
@@ -89,17 +90,23 @@
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
-    	console.log(response)
+    	this.setStatus(JSON.stringify(response))
       });
-	
+      setTimeout(function(){
+      	if(this.status.includes("200")){
+      		this.$router.push("/calendar");
+      	}
+      	else{
+		window.alert("Error Username or Password Incorrect");
+		alert(this.status);
+        }
+      }, 2000);
       //IF UNAME & PASS IN DB 
-      if(console.log == "200"){
-      	this.$router.push("/calendar");
-      }
-      else{
-	window.alert("Error Username or Password Incorrect");
-      }
+      alert(this.status);
     },
+    setStatus: function(string){
+	this.status = string;
+    }
   }
  }
 </script>
