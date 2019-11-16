@@ -15,6 +15,13 @@
     ></v-text-field>
 
     <v-text-field
+      v-model="email1"
+      label="E-mail"
+      :rules="emailRules"
+      required
+    ></v-text-field>
+
+    <v-text-field
         v-model="password"
         :rules="passwordRules"
         :type='"password"'
@@ -53,12 +60,13 @@
   export default {
     data: () => ({
       valid: true,
-      email: '',
+      email1: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       password: '',
+      name1: '',
       passwordRules: [
           v => !!v || 'Password is required'
       ],
@@ -75,13 +83,12 @@
                 this.snackbar = true;
 
                 console.log("Valid and sending data...")
-                alert(this.name);
-                alert(this.password);
                 this.axios({
                     method: 'POST',
                     url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser',
                     data: {
-                        name: this.name,
+                        name: this.name1,
+                        email: this.email1,
                         password: this.password
                     }
                 }).then(response => console.log(response))

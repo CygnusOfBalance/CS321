@@ -115,13 +115,13 @@ import calendar from '../views/CalendarPage'
           method: 'POST',
           url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/sendschedule",
           data: {
-	        events: [{
+	         events: [{
             	eventName: this.name1,
             	start: begin,
             	end: ending,
-            	color: color2
-	        }],
-	        user: this.user1
+            	color: this.color2
+	         }],
+	         user: this.user1
           }
         }).then(response => {
           console.log(response)

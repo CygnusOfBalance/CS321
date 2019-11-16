@@ -192,8 +192,12 @@ export default {
     //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
     mounted: function () {
       this.axios.get(
-        "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getschedules"
-      ).then(response => {console.log(response)});
+        "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getschedule"
+      ).then(response => {
+          console.log(response),
+          //alert(JSON.stringify(response["data"]["Holden"]))
+          this.events = response["data"]["Holden"]
+      });
 
       /*this.axios.get(
         "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getusers"
