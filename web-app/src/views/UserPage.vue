@@ -75,11 +75,13 @@
                 this.snackbar = true;
 
                 console.log("Valid and sending data...")
+                alert(this.name);
+                alert(this.password);
                 this.axios({
-                    method: 'post',
+                    method: 'POST',
                     url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/createuser',
                     data: {
-                        email: this.email,
+                        name: this.name,
                         password: this.password
                     }
                 }).then(response => console.log(response))

@@ -8,7 +8,7 @@
     <v-subheader>Add Event</v-subheader>
 
     <v-select
-	v-model="year1"
+	      v-model="year1"
         :items="years"
         :menu-props="{ maxHeight: '400' }"
         label="Select"
@@ -97,7 +97,7 @@ import calendar from '../views/CalendarPage'
         start: '2019-01-07 09:00',
         end: '2019-01-07 10:00'
       }],
-      colorOrder: ["blue", "red", "orange", "green", "yellow"],
+      colorOrder: ["blue", "red", "orange", "green", "yellow", "purple", "cyan"],
       users:["Noah", "Peter", "Holden", "Thomas"],
     }),
     methods: {
@@ -105,8 +105,8 @@ import calendar from '../views/CalendarPage'
         //CALL TO DATABASE TO STORE
         //Formatting
 
-        var begin = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.starttime
-        var ending = this.year1 + "-" + this.month1  + "-" + this.day + " " + this.endtime
+        var begin = this.year1 + "-" + this.month1  + "-" + this.day1 + " " + this.starttime
+        var ending = this.year1 + "-" + this.month1  + "-" + this.day1 + " " + this.endtime
         var user2 = this.users.indexOf(this.user1)
         var color2 = this.colorOrder[user2]
 
@@ -115,16 +115,27 @@ import calendar from '../views/CalendarPage'
           method: 'POST',
           url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/sendschedule",
           data: {
-	    events: [{
+	        events: [{
             	eventName: this.name1,
             	start: begin,
             	end: ending,
             	color: color2
-	    }],
-	    user: this.user1
+	        }],
+	        user: this.user1
           }
-        })
-      }
-    }
+        }).then(response => {
+          console.log(response)
+        });
+      },
+    /*getUsers(){
+        this.axios({
+          method: 'GET',
+          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/?",
+          data: {
+            this.users = ???;
+          }
+        }
+      },*/
   }
+}
 </script>

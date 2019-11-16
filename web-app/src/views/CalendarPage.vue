@@ -132,14 +132,14 @@ export default {
         },
         ],
         removedEvents: [],
-            colorOrder: ["blue", "red", "orange", "green", "yellow"],
-	        users:["Noah", "Peter", "Holden", "Thomas"],
+        colorOrder: ["blue", "red", "orange", "green", "yellow", "purple", "cyan"],
+	      users:["Noah", "Peter", "Holden", "Thomas"],
     }),
 
     methods: {
 	    getEventColor(event){
             return event.color
-        },
+      },
 
         //Get current date for the calendar
         getDateNow() {
@@ -188,13 +188,12 @@ export default {
                 this.events = this.events.concat(readyToPush);
             }
         },
-        //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
-        /*mounted: function () {
-        this.axios({
-                method: 'GET',
-                //url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/",
-            }).then(response => {console.log(response)});
-        }*/
+    },
+    //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
+    mounted: function () {
+      this.axios.get(
+        "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getschedule"
+      ).then(response => {console.log(response)});
     },
 }
 </script>

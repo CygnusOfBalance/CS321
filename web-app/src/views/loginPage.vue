@@ -86,7 +86,7 @@
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
         	data: {
         	  name: this.name,
-		  Password: this.pw,
+		        Password: this.pw,
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
