@@ -119,7 +119,7 @@ import calendar from '../views/CalendarPage'
             	eventName: this.name1,
             	start: begin,
             	end: ending,
-            	color: color1	
+            	color: color2
 	    }],
 	    user: this.user1
           }
