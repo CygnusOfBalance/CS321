@@ -8,8 +8,8 @@
     <v-subheader>Create Account</v-subheader>
 
     <v-text-field
-      v-model="name"
-      label="Username"
+      v-model="name1"
+      label="Name"
 
       required
     ></v-text-field>
