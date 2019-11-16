@@ -3,13 +3,13 @@
     ref="form"
     v-model="valid"
     lazy-validation
-  > 
-   <v-col cols="4" offset="4"> 
+  >
+   <v-col cols="4" offset="4">
     <v-subheader>Create Calendar</v-subheader>
 
     <v-text-field
-      v-model="email"
-      label="email"
+      v-model="name"
+      label="Username"
       required
     ></v-text-field>
 
@@ -17,7 +17,7 @@
       v-model="pw"
       :rules="nameRules"
       :type="'password'"
-      
+
       label="Password"
       required
       box
@@ -57,7 +57,7 @@
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
       checkbox: false,
-	
+
       name: '',
       pw: '',
       cname: '',
@@ -81,8 +81,7 @@
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
         	data: {
         	  name: this.name,
-		  Password: this.Password,
-		  cname: this.cname, 
+		        Password: this.pw,
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)

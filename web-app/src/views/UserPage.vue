@@ -3,13 +3,13 @@
     ref="form"
     v-model="valid"
     lazy-validation
-  > 
-   <v-col cols="4" offset="4"> 
+  >
+   <v-col cols="4" offset="4">
     <v-subheader>Create Account</v-subheader>
 
     <v-text-field
-      v-model="email"
-      label="E-mail"
+      v-model="name"
+      label="Username"
 
       required
     ></v-text-field>
@@ -34,7 +34,7 @@
 
         required
     ></v-text-field>
-    
+
 
     <v-btn
       :disabled="!valid"
