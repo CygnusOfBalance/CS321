@@ -91,7 +91,14 @@
                         email: this.email1,
                         password: this.password
                     }
-                }).then(response => console.log(response))
+                }).then(response => {
+                  if(response["status"] == "200"){
+                    this.$router.push("/calendar");
+                  }
+                  else{
+                    alert("Error")
+                  }
+                });
             }
         },
         passwordMatch() {

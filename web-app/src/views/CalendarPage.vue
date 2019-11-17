@@ -164,8 +164,18 @@ export default {
           resp = resp.replace(/\[/g, '')
           resp = resp.replace(/\]/g, '')
           resp = resp.split(",")
+          console.log(resp)
           this.users = resp;
+
+          //console.log(this.users)
      });
+
+      this.events = [{
+        name: 'Weekly Meeting',
+        start: '2018-11-18 09:00',
+        end: '2018-11-18 10:00',
+        color: "red",
+      }]
 
       this.axios.get(
         "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getschedule"
@@ -176,17 +186,22 @@ export default {
           for (i in response["data"]){
             //ACTUALLY PARSE OUT THE DATA
             if(response["data"][i] != ""){
-              response["data"][i]["0"]["name"] = response["data"][i]["0"]["eventName"]
-              delete response["data"][i]["0"]["eventName"]
-              x.push(response["data"][i])
+              x = []
+              var t = 0
+              for(t = 0; t < response["data"][i].length; t++){
+                  response["data"][i][t][0]["name"] = response["data"][i][t][0]["eventName"]
+                  delete response["data"][i][t][0]["eventName"]
+                  x.push(response["data"][i][t][0])
+                  this.events.push(x[t])
+              }
             }
           }
-          this.events = this.events.concat(x[0]);
+          //console.log(x)
 
           //--------------------------------------------------------------------
           //for demo purposes
           //--------------------------------------------------------------------
-          this.events.push({name: 'Weekly Meeting',
+          /*this.events.push({name: 'Weekly Meeting',
                             start: '2019-11-18 09:00',
                             end: '2019-11-18 10:00',
                             color: "red",});
@@ -205,8 +220,11 @@ export default {
          this.events.push({name: 'Work',
                            start: '2019-11-21 09:00',
                            end: '2019-11-21 17:00',
-                           color: "green",});
-         console.log(this.events)
+                           color: "green",});*/
+         //--------------------------------------------------------------------
+         //for demo purposes
+         //--------------------------------------------------------------------
+
       });
     },
 }

@@ -9,7 +9,7 @@
 
     <v-text-field
       v-model="name"
-      label="Name"
+      label="E-Mail"
       required
     ></v-text-field>
 
@@ -82,7 +82,7 @@
       	// send a POST request
 
         //force route for now
-        this.$router.push("/calendar");
+        //this.$router.push("/calendar");
 
       	this.axios({
         	method: 'POST',
