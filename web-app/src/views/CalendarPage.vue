@@ -4,13 +4,13 @@
 
         <v-row justify='center' align='center'>
 	       <addEvent/>
-                <v-sheet height="400" width="700">
+                <v-sheet height="500" width="700">
 		    <v-col offset="5">
 		    	<p>Group 3s Calendar</p>
 		    </v-col>
                     <v-calendar
                     ref="calendar"
-                    :now="getDateNow"
+                    @now="getDateNow"
                     :value="today"
                     :events="events"
                     :event-color="getEventColor"
@@ -55,7 +55,7 @@
 			  <v-btn-toggle
 			  	v-model="toggle_exclusive"
 				  multiple
-				  color="white"
+				  color="black"
 			  >
           <v-btn
             v-for="n in this.users.length"
@@ -79,7 +79,7 @@ export default {
         addEvent
     },
     data: () => ({
-        toggle_exclusive: "",
+        toggle_exclusive: [],
         name1: "",
         color1: "green",
         year1: "",
@@ -181,13 +181,31 @@ export default {
               x.push(response["data"][i])
             }
           }
-          //x.push(response["data"]["Rost"])
-          //alert(JSON.stringify(x[0]))
           this.events = this.events.concat(x[0]);
-          /*this.events.push({name: 'Weekly Meeting',
-                            start: '2019-11-10 09:00',
-                            end: '2019-11-10 10:00',
-                            color: "blue",});*/
+
+          //--------------------------------------------------------------------
+          //for demo purposes
+          //--------------------------------------------------------------------
+          this.events.push({name: 'Weekly Meeting',
+                            start: '2019-11-18 09:00',
+                            end: '2019-11-18 10:00',
+                            color: "red",});
+          this.events.push({name: 'class',
+                            start: '2019-11-18 10:30',
+                            end: '2019-11-18 14:30',
+                            color: "red",});
+          this.events.push({name: 'Class',
+                            start: '2019-11-20 09:00',
+                            end: '2019-11-20 15:00',
+                            color: "orange",});
+          this.events.push({name: 'Group Meeting',
+                            start: '2019-11-18 15:00',
+                            end: '2019-11-18 17:00',
+                            color: "blue",});
+         this.events.push({name: 'Work',
+                           start: '2019-11-21 09:00',
+                           end: '2019-11-21 17:00',
+                           color: "green",});
          console.log(this.events)
       });
     },

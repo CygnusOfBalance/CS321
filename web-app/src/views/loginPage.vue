@@ -20,25 +20,24 @@
 
       label="Password"
       required
-      box
     ></v-text-field>
 
     <v-btn
       :disabled="!valid"
-      color="success"
+      color="green"
       class="mr-4"
       @click="POST"
     >
       Login
     </v-btn>
 
-    <!--<v-btn
+    <v-btn
       class="mr-4"
       color="blue"
       @click="navigate"
     >
-      Create Calendar
-    </v-btn>-->
+      Create User
+    </v-btn>
 
 
    </v-col>
@@ -77,12 +76,14 @@
       },
 
       navigate() {
-    	this.$router.push("/create-calendar");
+    	 this.$router.push("/create-user");
       },
       POST(){
       	// send a POST request
-        alert(this.name)
-        alert(this.pw)
+
+        //force route for now
+        this.$router.push("/calendar");
+
       	this.axios({
         	method: 'POST',
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',

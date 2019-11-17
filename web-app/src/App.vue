@@ -1,16 +1,21 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase"> 
+      <v-toolbar-title class="headline text-uppercase">
         <span class="font-weight-light">Schedules+</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+      <v-btn-toggle
+        v-model="toggle_exclusive"
+        color="black"
       >
-      </v-btn>
+          <v-btn
+            color="orange"
+            @click="darkMode"
+          >
+          Dark Mode
+          </v-btn>
+      </v-btn-toggle>
     </v-app-bar>
 
     <v-content>
@@ -30,7 +35,17 @@ export default {
     createCalendar
   },
   data: () => ({
-    //
+    toggle_exclusive: "",
   }),
+  methods: {
+    darkMode(){
+      if(this.$vuetify.theme.dark == true){
+        this.$vuetify.theme.dark = false;
+      }
+      else{
+        this.$vuetify.theme.dark = true;
+      }
+1    }
+  },
 };
 </script>
