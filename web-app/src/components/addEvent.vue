@@ -112,7 +112,8 @@ import calendar from '../views/CalendarPage'
 
 
         //May need to add user
-        this.user1.replace(" ", "");
+        this.user1 = this.user1.replace(" ", "")
+        console.log(this.user1)
         this.axios({
           method: 'POST',
           url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/sendschedule",
