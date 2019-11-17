@@ -112,6 +112,7 @@ import calendar from '../views/CalendarPage'
 
 
         //May need to add user
+        this.user1.replace(" ", "");
         this.axios({
           method: 'POST',
           url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/sendschedule",
