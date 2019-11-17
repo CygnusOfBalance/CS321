@@ -91,49 +91,13 @@ export default {
         today: "",
         events: [{
             name: 'Weekly Meeting',
-            start: '2019-11-10 09:00',
-            end: '2019-11-10 10:00',
+            start: '2018-11-10 09:00',
+            end: '2018-11-10 10:00',
 	        color: "blue",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-13 09:00',
-            end: '2019-11-13 10:00',
-	         color: "blue",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-12 09:00',
-            end: '2019-11-12 10:00',
-            color: "red",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-12 05:00',
-            end: '2019-11-12 07:00',
-            color: "red",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-14 09:00',
-            end: '2019-11-14 10:00',
-            color: "orange",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-15 09:00',
-            end: '2019-11-15 10:00',
-	        color: "blue",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-16 12:00',
-            end: '2019-11-16 15:00',
-            color: "green",
-        },{
-            name: 'Weekly Meeting',
-            start: '2019-11-15 16:00',
-            end: '2019-11-15 22:00',
-            color: "green",
-        },
-        ],
+        }],
         removedEvents: [],
         colorOrder: ["blue", "red", "orange", "green", "yellow", "purple", "cyan"],
-	      users:["Noah", "Peter", "Holden", "Thomas"],
+	      users: [],
     }),
 
     methods: {
@@ -191,17 +155,30 @@ export default {
     },
     //THIS FUNCTION IS FOR GETTING THE CALENDAR ON REFRESH
     mounted: function () {
+      var resp
+      this.axios({
+        method: 'GET',
+        url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getusers",
+        }).then(response => {
+          resp = response["data"]["body"].replace(/\"/g, '')
+          resp = resp.replace(/\[/g, '')
+          resp = resp.replace(/\]/g, '')
+          resp = resp.split(",")
+          this.users = resp;
+     });
+
       this.axios.get(
         "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getschedule"
       ).then(response => {
-          console.log(response),
-          //alert(JSON.stringify(response["data"]["Holden"]))
-          this.events = response["data"]["Holden"]
+          console.log(response)
+          var i
+          var x = []
+          for (i in response["data"]){
+            //ACTUALLY PARSE OUT THE DATA
+            x.push(response["data"][i])
+          }
+          this.events = x
       });
-
-      /*this.axios.get(
-        "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getusers"
-      ).then(response => {console.log(response)});*/
     },
 }
 </script>

@@ -9,7 +9,7 @@
 
     <v-text-field
       v-model="name"
-      label="Username"
+      label="Name"
       required
     ></v-text-field>
 
