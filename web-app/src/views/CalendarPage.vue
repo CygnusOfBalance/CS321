@@ -175,9 +175,20 @@ export default {
           var x = []
           for (i in response["data"]){
             //ACTUALLY PARSE OUT THE DATA
-            x.push(response["data"][i])
+            if(response["data"][i] != ""){
+              response["data"][i]["0"]["name"] = response["data"][i]["0"]["eventName"]
+              delete response["data"][i]["0"]["eventName"]
+              x.push(response["data"][i])
+            }
           }
-          this.events = x
+          //x.push(response["data"]["Rost"])
+          //alert(JSON.stringify(x[0]))
+          this.events = this.events.concat(x[0]);
+          /*this.events.push({name: 'Weekly Meeting',
+                            start: '2019-11-10 09:00',
+                            end: '2019-11-10 10:00',
+                            color: "blue",});*/
+         console.log(this.events)
       });
     },
 }

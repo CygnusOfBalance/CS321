@@ -32,13 +32,13 @@
       Login
     </v-btn>
 
-    <v-btn
+    <!--<v-btn
       class="mr-4"
       color="blue"
       @click="navigate"
     >
       Create Calendar
-    </v-btn>
+    </v-btn>-->
 
 
    </v-col>
@@ -81,15 +81,18 @@
       },
       POST(){
       	// send a POST request
+        alert(this.name)
+        alert(this.pw)
       	this.axios({
-        	method: 'post',
+        	method: 'POST',
         	url: 'https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/login',
         	data: {
         	  name: this.name,
-		        Password: this.pw,
+		        password: this.pw,
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
+      alert(response)
     	this.setStatus(JSON.stringify(response)),
       this.routerPush();
       });

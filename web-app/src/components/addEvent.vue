@@ -89,9 +89,9 @@ import calendar from '../views/CalendarPage'
       valid: true,
 
       years: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012],
-      days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      days: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
         20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-      months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      months: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
       events: [{
         name: 'Stuff',
         start: '2019-01-07 09:00',
@@ -110,6 +110,7 @@ import calendar from '../views/CalendarPage'
         var user2 = this.users.indexOf(this.user1)
         var color2 = this.colorOrder[user2]
 
+
         //May need to add user
         this.axios({
           method: 'POST',
@@ -119,23 +120,33 @@ import calendar from '../views/CalendarPage'
             	eventName: this.name1,
             	start: begin,
             	end: ending,
-            	color: this.color2
+            	color: color2
 	         }],
 	         user: this.user1
           }
         }).then(response => {
           console.log(response)
         });
+        this.getUsers();
       },
-    /*getUsers(){
+    getUsers(){
         this.axios({
           method: 'GET',
-          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/?",
-          data: {
-            this.users = ???;
-          }
-        }
-      },*/
-  }
+          url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getusers",
+        }).then(response => {console.log(response)});
+      },
+  },
+  mounted: function () {
+    this.axios({
+      method: 'GET',
+      url: "https://cfi7bbpmh2.execute-api.us-east-1.amazonaws.com/Production/getusers",
+    }).then(response => {
+      var resp = response["data"]["body"].replace(/\"/g, '')
+      resp = resp.replace(/\[/g, '')
+      resp = resp.replace(/\]/g, '')
+      resp = resp.split(",")
+      this.users = resp;
+    });
+  },
 }
 </script>
