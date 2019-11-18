@@ -93,7 +93,6 @@
         	}
       	}).then(response => {
     	// returning the data here allows the caller to get it through another .then(...)
-      alert(response)
     	this.setStatus(JSON.stringify(response)),
       this.routerPush();
       });
