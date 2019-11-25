@@ -94,9 +94,11 @@
                 }).then(response => {
                   if(response["status"] == "200"){
                     this.$router.push("/calendar");
+                    return response["status"]
                   }
                   else{
                     alert("Error")
+                    return response["status"]
                   }
                 });
             }
